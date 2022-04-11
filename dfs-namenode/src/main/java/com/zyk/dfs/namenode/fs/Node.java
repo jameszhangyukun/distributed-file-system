@@ -12,7 +12,7 @@ import java.util.*;
 public class Node {
     private String path;
     private int type;
-    private TreeMap<String, Node> children;
+    private final TreeMap<String, Node> children;
     private Map<String, String> attr;
     private Node parent;
 
@@ -21,6 +21,12 @@ public class Node {
         this.attr = new HashMap<>();
         this.parent = null;
     }
+    public Node(String path, int type) {
+        this();
+        this.path = path;
+        this.type = type;
+    }
+
 
     public boolean isFile() {
         return type == NodeType.FILE.getValue();
@@ -91,7 +97,6 @@ public class Node {
      *
      * @param node  节点
      * @param level 拷贝的层级
-     * @return
      */
     public static Node deepCopy(Node node, int level) {
         if (node == null) {
